@@ -1,0 +1,264 @@
+{
+	"info": {
+		"_postman_id": "f9bb44fc-bc73-4e45-9bbd-c83533d01a20",
+		"name": "Mini Project One",
+		"description": "Employee Management System is a web-based application that enables seamless employee data management within an organization.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40401865"
+	},
+	"item": [
+		{
+			"name": "List of employee data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful GET request\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_URL}}/employee",
+					"host": [
+						"{{base_URL}}"
+					],
+					"path": [
+						"employee"
+					]
+				},
+				"description": "**Description:** Fetch all employee data.\n\n**Method:** GET\n\n**URL:** /employee\n\n**Response Codes:**\n\n- `200 OK` – All employee data retrieved successfully.\n    \n- `204 NO_CONTENT`– No employee found."
+			},
+			"response": []
+		},
+		{
+			"name": "Create new employee data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"employee_id\": \"EM1122\", \n    \"employee_name\": \"Ajith\", \n    \"employee_email\": \"ajith@gmail.com\", \n    \"employee_salary\" : 40000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_URL}}/employee/add",
+					"host": [
+						"{{base_URL}}"
+					],
+					"path": [
+						"employee",
+						"add"
+					]
+				},
+				"description": "**Description:** Add new employee details.\n\n**Method:** POST\n\n**Data Validation:**\n\n- Field: Employee Name | Type: String | Validation Rules: Min 3 characters, Max 30 characters\n    \n- Field: Employee Email | Type: String | Validation Rules: Must be a valid email format\n    \n- Field: Employee Salary | Type: Double | Validation Rules: Min value 1000, Max value 1000000\n    \n\n**URL:** /employee/add\n\n**Response Codes:**\n\n- `201 CREATED` – Employee data created successfully.\n    \n- `400 BAD_REQUEST`– Employee data not created."
+			},
+			"response": []
+		},
+		{
+			"name": "Update employee data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"employee_id\": \"EM1122\", \n    \"employee_name\": \"Ajith\", \n    \"employee_email\": \"vijay@gmail.com\", \n    \"employee_salary\" : 40000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_URL}}/employee/update/EM1122",
+					"host": [
+						"{{base_URL}}"
+					],
+					"path": [
+						"employee",
+						"update",
+						"EM1122"
+					]
+				},
+				"description": "**Description:** Update existing employee data based on the given employee ID.\n\n**Method:** PUT\n\n**Parameters:**\n\n- `employeeId` (Path Variable) – Type: `String` – **Required**\n    \n- Employee data (Request Body) - Type: `JSON` - **Required**\n    \n\n**URL:** /employee/update/{employeeId}\n\n**Response Codes:**\n\n- `200 OK` – Employee data updated successfully.\n    \n- `404 NOT_FOUND`– Employee data not found/not updated."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete employee data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_URL}}/employee/delete/EM2348",
+					"host": [
+						"{{base_URL}}"
+					],
+					"path": [
+						"employee",
+						"delete",
+						"EM2348"
+					]
+				},
+				"description": "**Description:** Delete employee data based on the given employee ID.\n\n**Method:** DELETE\n\n**Parameters:**\n\n- `employeeId` (Path Variable) – Type: `String` – **Required**\n    \n\n**URL:** /employee/delete/{employeeId}\n\n**Response Codes:**\n\n- `200 OK` – Employee data deleted successfully.\n    \n- `404 NOT_FOUND`– Employee data not found/not deleted."
+			},
+			"response": []
+		},
+		{
+			"name": "Get employee data by employee id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test for 200 OK response\r",
+							"pm.test(\"Successful GET request\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_URL}}/employee/EM1602",
+					"host": [
+						"{{base_URL}}"
+					],
+					"path": [
+						"employee",
+						"EM1602"
+					]
+				},
+				"description": "**Description:** Retrieves employee details based on the given employee ID.\n\n**Method:** GET\n\n**Parameters:**\n\n- `employeeId` (Path Variable) – Type: `String` – **Required**\n    \n\n**URL:** /employee/{employeeId}\n\n**Response Codes:**\n\n- `200 OK` – Employee data retrieved successfully.\n    \n- `404 NOT_FOUND` – No employee found for the given ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Get employee data by employee email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test for 200 OK response\r",
+							"pm.test(\"Successful GET request\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_URL}}/employee/search/vijay@gmail.com",
+					"host": [
+						"{{base_URL}}"
+					],
+					"path": [
+						"employee",
+						"search",
+						"vijay@gmail.com"
+					]
+				},
+				"description": "**Description:** Retrieves employee details based on the given employee Email address.\n\n**Method:** GET\n\n**Parameters:**\n\n- `employeeEmail` (Path Variable) – Type: `String` – **Required**\n    \n\n**URL:** /employee/search/{employeeEmail}\n\n**Response Codes:**\n\n- `200 OK` – Employee data retrieved successfully.\n    \n- `404 NOT_FOUND` – No employee found for the given Email."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Project One</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Employee Management System</h1>
+    </header>
+
+    <main class="mainDiv">
+        <button class="addBn" id="addEmployee">Add Employee</button>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>S No</th>
+                    <th>Employee Id</th>
+                    <th>Employee Name</th>
+                    <th>Employee Email</th>
+                    <th>Employee Salary</th>
+                </tr>
+            </thead>
+            <tbody class="tablebody" id="tablebody"></tbody>
+        </table>
+    </main>
+
+    <div class="formDiv" id="formDiv">
+        <form action="" id="myForm">
+            <h3>Add Employee</h3>
+            <div class="formfield">
+                <label for="employee_name">Name:</label>
+                <input type="text" id="employee_name" name="employee_name" class="addEmployee" autocomplete="off">
+            </div>
+            <div class="formfield">
+                <label for="employee_email">Email:</label>
+                <input type="email" id="employee_email" name="employee_email" class="addEmployee" autocomplete="off">
+            </div>
+            <div class="formfield">
+                <label for="employee_salary">Salary:</label>
+                <input type="text" list="salary" id="employee_salary" name="employee_salary" class="addEmployee"
+                    autocomplete="off">
+                <datalist id="salary">
+                    <option value="">15,000</option>
+                    <option value="">20,000</option>
+                    <option value="">30,000</option>
+                </datalist>
+            </div>
+            <div class="formBns">
+                <button class="addBn" id="cancelBn" onclick="hider();">Cancel</button>
+                <button class="addBn" id="insertBn" onclick="hider();">Insert</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="viewDiv" id="viewDiv" popover>
+        <h3>Employee Details</h3>
+        <div class="displayDetails" id="displayDetails"></div>
+    </div>
+
+    <!-- Notification Toaster -->
+    <div id="toast"></div>
+
+</body>
+
+<script src="script.js"></script>
+
+</html>
